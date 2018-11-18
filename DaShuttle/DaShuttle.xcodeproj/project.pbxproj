@@ -14,6 +14,8 @@
 		75F5DAB221A0C873001106D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75F5DAB021A0C873001106D5 /* LaunchScreen.storyboard */; };
 		75F5DABA21A0CA16001106D5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F5DAB921A0CA16001106D5 /* MapViewController.swift */; };
 		75F5DABE21A0CD49001106D5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75F5DABD21A0CD49001106D5 /* MapKit.framework */; };
+		75F5DAC021A0E07D001106D5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75F5DABF21A0E07D001106D5 /* GoogleService-Info.plist */; };
+		75F5DAC321A0E879001106D5 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F5DAC221A0E879001106D5 /* LocationModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		75F5DAB321A0C873001106D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75F5DAB921A0CA16001106D5 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		75F5DABD21A0CD49001106D5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		75F5DABF21A0E07D001106D5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		75F5DAC221A0E879001106D5 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,10 +77,12 @@
 		75F5DAA621A0C872001106D5 /* DaShuttle */ = {
 			isa = PBXGroup;
 			children = (
+				75F5DAC121A0E826001106D5 /* Models */,
 				75F5DABB21A0CA20001106D5 /* Controllers */,
 				75F5DAA721A0C872001106D5 /* AppDelegate.swift */,
 				75F5DAAB21A0C872001106D5 /* Main.storyboard */,
 				75F5DAAE21A0C873001106D5 /* Assets.xcassets */,
+				75F5DABF21A0E07D001106D5 /* GoogleService-Info.plist */,
 				75F5DAB021A0C873001106D5 /* LaunchScreen.storyboard */,
 				75F5DAB321A0C873001106D5 /* Info.plist */,
 			);
@@ -98,6 +104,14 @@
 				3887E13627C1EFB0F3CE31AF /* Pods_DaShuttle.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		75F5DAC121A0E826001106D5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				75F5DAC221A0E879001106D5 /* LocationModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,6 +180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				75F5DAB221A0C873001106D5 /* LaunchScreen.storyboard in Resources */,
+				75F5DAC021A0E07D001106D5 /* GoogleService-Info.plist in Resources */,
 				75F5DAAF21A0C873001106D5 /* Assets.xcassets in Resources */,
 				75F5DAAD21A0C872001106D5 /* Main.storyboard in Resources */,
 			);
@@ -206,6 +221,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DaShuttle/Pods-DaShuttle-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -213,6 +229,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -228,6 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				75F5DAA821A0C872001106D5 /* AppDelegate.swift in Sources */,
+				75F5DAC321A0E879001106D5 /* LocationModel.swift in Sources */,
 				75F5DABA21A0CA16001106D5 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -383,7 +401,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.johnamcruz.DaShuttle;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DaShuttle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -404,7 +422,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.johnamcruz.DaShuttle;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DaShuttle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
