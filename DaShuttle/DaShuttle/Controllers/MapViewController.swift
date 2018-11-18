@@ -55,8 +55,17 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                                     longitudeDelta: (maxLong - minLong) * 1.3)
         let region = MKCoordinateRegion(center: center, span: span)
         self.mapView.setRegion(region, animated: true)
+        self.mapView.addAnnotations(getAnnotations())
     }
     
+    func getAnnotations() -> [MKPointAnnotation] {
+        return self.locations.map { location -> MKPointAnnotation in
+            let annotation = MKPointAnnotation()
+            annotation.coordinate.latitude = location.lat
+            annotation.coordinate.longitude = location.lng
+            return annotation
+        }
+    }
     
     // MARK: - Navigation
 
