@@ -16,6 +16,7 @@
 		75F5DABE21A0CD49001106D5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75F5DABD21A0CD49001106D5 /* MapKit.framework */; };
 		75F5DAC321A0E879001106D5 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F5DAC221A0E879001106D5 /* LocationModel.swift */; };
 		75F5DAC521A22F8E001106D5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75F5DAC421A22F8E001106D5 /* GoogleService-Info.plist */; };
+		75F5DAC721A27483001106D5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F5DAC621A27483001106D5 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		75F5DABD21A0CD49001106D5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		75F5DAC221A0E879001106D5 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		75F5DAC421A22F8E001106D5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		75F5DAC621A27483001106D5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				75F5DAC121A0E826001106D5 /* Models */,
 				75F5DABB21A0CA20001106D5 /* Controllers */,
 				75F5DAA721A0C872001106D5 /* AppDelegate.swift */,
+				75F5DAC621A27483001106D5 /* Constants.swift */,
 				75F5DAAB21A0C872001106D5 /* Main.storyboard */,
 				75F5DAAE21A0C873001106D5 /* Assets.xcassets */,
 				75F5DAB021A0C873001106D5 /* LaunchScreen.storyboard */,
@@ -247,6 +250,7 @@
 				75F5DAA821A0C872001106D5 /* AppDelegate.swift in Sources */,
 				75F5DAC321A0E879001106D5 /* LocationModel.swift in Sources */,
 				75F5DABA21A0CA16001106D5 /* MapViewController.swift in Sources */,
+				75F5DAC721A27483001106D5 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
