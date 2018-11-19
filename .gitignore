@@ -68,3 +68,4 @@ fastlane/screenshots/**/*.png
 fastlane/test_output
 
 DaShuttle/DaShuttle/GoogleService-Info.plist
+*.DS_Store
