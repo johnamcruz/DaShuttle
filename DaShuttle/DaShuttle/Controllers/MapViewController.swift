@@ -14,7 +14,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     var locations = [LocationModel]()
-    
+    let trolleyImage = "trolleybus"
+    let mapReuseIdentifier = "Pin"
+
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
@@ -33,6 +35,17 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         })
     }
     
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        var annotationView = self.mapView.dequeueReusableAnnotationView(withIdentifier: mapReuseIdentifier)
+        if annotationView == nil{
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: mapReuseIdentifier)
+        } else {
+            annotationView?.annotation = annotation
+        }
+        annotationView?.image = UIImage(named: trolleyImage)
+        return annotationView
+    }
+
     func setupMap() {
         let latitudes = locations.map { location -> Double in
             let location = location as LocationModel
