@@ -41,12 +41,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
     func setupMap() {
         let latitudes = locations.map { location -> Double in
-            let location = location as LocationModel
             return location.lat
         }
         
         let longitudes = locations.map { location -> Double in
-            let location = location as LocationModel
             return location.lng
         }
         
