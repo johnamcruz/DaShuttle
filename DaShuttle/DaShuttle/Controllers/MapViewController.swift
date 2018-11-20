@@ -21,12 +21,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
         // Do any additional setup after loading the view.
         let ref = Database.database().reference()
-        ref.observe(.value, with: { snapshot in
-            for child in snapshot.children {
-                if let childSnapshot = child as? DataSnapshot {
-                    self.locations.append(LocationModel(snapshot: childSnapshot))
-                }
-            }
+        ref.observe(.childAdded, with: { snapshot in
+            self.locations.append(LocationModel(snapshot: snapshot))
             self.setupMap()
         })
     }
