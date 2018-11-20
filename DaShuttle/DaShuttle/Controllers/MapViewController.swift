@@ -31,6 +31,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         var annotationView = self.mapView.dequeueReusableAnnotationView(withIdentifier: Constants.mapReuseIdentifier)
         if annotationView == nil{
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: Constants.mapReuseIdentifier)
+            annotationView?.canShowCallout = true
         } else {
             annotationView?.annotation = annotation
         }
@@ -66,6 +67,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func getAnnotations() -> [MKPointAnnotation] {
         return self.locations.map { location -> MKPointAnnotation in
             let annotation = MKPointAnnotation()
+            annotation.title = location.tag
             annotation.coordinate.latitude = location.lat
             annotation.coordinate.longitude = location.lng
             return annotation
