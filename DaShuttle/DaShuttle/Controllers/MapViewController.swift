@@ -24,9 +24,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         ref.observe(.value, with: { snapshot in
             for child in snapshot.children {
                 if let childSnapshot = child as? DataSnapshot {
-                    let item = childSnapshot.value as! [String: AnyObject]
-                    let location = LocationModel(lat: item["lat"] as! Double, lng: item["lng"] as! Double, timestamp: item["lastTimestamp"] as! TimeInterval)
-                    self.locations.append(location)
+                    self.locations.append(LocationModel(snapshot: childSnapshot))
                 }
             }
             self.setupMap()

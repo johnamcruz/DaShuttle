@@ -7,15 +7,29 @@
 //
 
 import Foundation
+import Firebase
 
 struct LocationModel : Codable {
+    var id : Int
+    var lastMessage : String
     var lastTimestamp : Date
     var lat : Double
     var lng : Double
     
-    init(lat: Double, lng: Double, timestamp: TimeInterval) {
+    init(id: Int, lat: Double, lng: Double, message: String, timestamp: TimeInterval) {
+        self.id = id
         self.lat = lat
         self.lng = lng
+        self.lastMessage = message
         self.lastTimestamp = Date(timeIntervalSince1970: timestamp)
+    }
+    
+    init(snapshot: DataSnapshot) {
+        let item = snapshot.value as! [String: AnyObject]
+        self.id = item["id"] as! Int
+        self.lat = item["lat"] as! Double
+        self.lng = item["lng"] as! Double
+        self.lastMessage = item["lastMessage"] as! String
+        self.lastTimestamp = Date(timeIntervalSince1970: item["lastTimestamp"] as! TimeInterval)
     }
 }
