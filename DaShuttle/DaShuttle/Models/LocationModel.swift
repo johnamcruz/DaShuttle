@@ -16,14 +16,16 @@ struct LocationModel : Codable {
     var lat : Double
     var lng : Double
     var tag : String
+    var accuracy : Int
     
-    init(id: Int, lat: Double, lng: Double, message: String, timestamp: TimeInterval, tag: String) {
+    init(id: Int, lat: Double, lng: Double, message: String, timestamp: TimeInterval, tag: String, accuracy: Int) {
         self.id = id
         self.lat = lat
         self.lng = lng
         self.lastMessage = message
         self.lastTimestamp = Date(timeIntervalSince1970: timestamp)
         self.tag = tag
+        self.accuracy = accuracy
     }
     
     init(snapshot: DataSnapshot) {
@@ -34,5 +36,6 @@ struct LocationModel : Codable {
         self.lastMessage = item["lastMessage"] as! String
         self.lastTimestamp = Date(timeIntervalSince1970: item["lastTimestamp"] as! TimeInterval)
         self.tag = item["tag"] as! String
+        self.accuracy = item["accuracy"] as! Int
     }
 }
