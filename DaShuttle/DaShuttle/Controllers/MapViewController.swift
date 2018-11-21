@@ -32,6 +32,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             if let annotation = self.mapView.annotations.first(where: {  $0.title == location.tag }) {
                 self.mapView.removeAnnotation(annotation)
                 self.mapView.addAnnotation(self.createAnnotation(location: location))
+                self.locations.removeAll(where:{ $0.id == location.id })
+                self.locations.append(location)
+                self.updateRegion()
             }
         })
     }
@@ -45,10 +48,16 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             annotationView?.annotation = annotation
         }
         annotationView?.image = UIImage(named: Constants.trolleyImage)
+        annotationView?.animate()
         return annotationView
     }
 
     func setupMap() {
+        self.updateRegion()
+        self.mapView.addAnnotations(getAnnotations())
+    }
+    
+    func updateRegion() {
         let latitudes = locations.map { $0.lat }
         
         let longitudes = locations.map { $0.lng }
@@ -64,7 +73,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                                     longitudeDelta: (maxLong - minLong) * 1.3)
         let region = MKCoordinateRegion(center: center, span: span)
         self.mapView.setRegion(region, animated: true)
-        self.mapView.addAnnotations(getAnnotations())
     }
     
     func getAnnotations() -> [MKPointAnnotation] {
