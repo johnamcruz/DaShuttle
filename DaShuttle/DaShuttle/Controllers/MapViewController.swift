@@ -19,11 +19,20 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         mapView.delegate = self
 
-        // Do any additional setup after loading the view.
+        // location added eventß
         let ref = Database.database().reference()
         ref.observe(.childAdded, with: { snapshot in
             self.locations.append(LocationModel(snapshot: snapshot))
             self.setupMap()
+        })
+        
+        // location change event
+        ref.observe(.childChanged, with: { snapshot in
+            let location = LocationModel(snapshot: snapshot)
+            if let annotation = self.mapView.annotations.first(where: {  $0.title == location.tag }) {
+                self.mapView.removeAnnotation(annotation)
+                self.mapView.addAnnotation(self.createAnnotation(location: location))
+            }
         })
     }
     
@@ -40,13 +49,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
 
     func setupMap() {
-        let latitudes = locations.map { location -> Double in
-            return location.lat
-        }
+        let latitudes = locations.map { $0.lat }
         
-        let longitudes = locations.map { location -> Double in
-            return location.lng
-        }
+        let longitudes = locations.map { $0.lng }
         
         let maxLat = latitudes.max()!
         let minLat = latitudes.min()!
@@ -63,13 +68,15 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func getAnnotations() -> [MKPointAnnotation] {
-        return self.locations.map { location -> MKPointAnnotation in
-            let annotation = MKPointAnnotation()
-            annotation.title = location.tag
-            annotation.coordinate.latitude = location.lat
-            annotation.coordinate.longitude = location.lng
-            return annotation
-        }
+        return self.locations.map { createAnnotation(location: $0) }
+    }
+    
+    func createAnnotation(location: LocationModel) -> MKPointAnnotation {
+        let annotation = MKPointAnnotation()
+        annotation.title = location.tag
+        annotation.coordinate.latitude = location.lat
+        annotation.coordinate.longitude = location.lng
+        return annotation
     }
     
     // MARK: - Navigation
