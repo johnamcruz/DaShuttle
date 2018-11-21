@@ -19,7 +19,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         mapView.delegate = self
 
-        // location added eventß
+        // location added event
         let ref = Database.database().reference()
         ref.observe(.childAdded, with: { snapshot in
             self.locations.append(LocationModel(snapshot: snapshot))
@@ -29,11 +29,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         // location change event
         ref.observe(.childChanged, with: { snapshot in
             let location = LocationModel(snapshot: snapshot)
-            if let annotation = self.mapView.annotations.first(where: {  $0.title == location.tag }) {
-                self.mapView.removeAnnotation(annotation)
-                self.mapView.addAnnotation(self.createAnnotation(location: location))
-                self.locations.removeAll(where:{ $0.id == location.id })
-                self.locations.append(location)
+            if let annotation = self.mapView.annotations.first(where: {  $0.title == location.tag }) as? MKPointAnnotation {
+                annotation.coordinate = CLLocationCoordinate2D(latitude: location.lat, longitude: location.lng)
+                var oldLocation = self.locations.first(where:{ $0.id == location.id })
+                oldLocation?.lat = location.lat
+                oldLocation?.lng = location.lng
                 self.updateRegion()
             }
         })
@@ -59,7 +59,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     func updateRegion() {
         let latitudes = locations.map { $0.lat }
-        
         let longitudes = locations.map { $0.lng }
         
         let maxLat = latitudes.max()!
