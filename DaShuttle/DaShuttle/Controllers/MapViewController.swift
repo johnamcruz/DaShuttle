@@ -28,12 +28,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         // location change event
         ref.observe(.childChanged, with: { snapshot in
-            let location = LocationModel(snapshot: snapshot)
-            if let annotation = self.mapView.annotations.first(where: {  $0.title == location.tag }) as? MKPointAnnotation {
-                annotation.coordinate = CLLocationCoordinate2D(latitude: location.lat, longitude: location.lng)
-                var oldLocation = self.locations.first(where:{ $0.id == location.id })
-                oldLocation?.lat = location.lat
-                oldLocation?.lng = location.lng
+            let newLocation = LocationModel(snapshot: snapshot)
+            if let annotation = self.mapView.annotations.first(where: {  $0.title == newLocation.tag }) as? MKPointAnnotation {
+                annotation.coordinate = CLLocationCoordinate2D(latitude: newLocation.lat, longitude: newLocation.lng)
+                var location = self.locations.first(where:{ $0.id == newLocation.id })
+                location?.lat = newLocation.lat
+                location?.lng = newLocation.lng
                 self.updateRegion()
             }
         })
